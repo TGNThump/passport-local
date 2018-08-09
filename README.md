@@ -1,13 +1,10 @@
 # passport-local
 
-[![Build](https://travis-ci.org/jaredhanson/passport-local.png)](https://travis-ci.org/jaredhanson/passport-local)
-[![Coverage](https://coveralls.io/repos/jaredhanson/passport-local/badge.png)](https://coveralls.io/r/jaredhanson/passport-local)
-[![Quality](https://codeclimate.com/github/jaredhanson/passport-local.png)](https://codeclimate.com/github/jaredhanson/passport-local)
-[![Dependencies](https://david-dm.org/jaredhanson/passport-local.png)](https://david-dm.org/jaredhanson/passport-local)
-[![Tips](http://img.shields.io/gittip/jaredhanson.png)](https://www.gittip.com/jaredhanson/)
+[![Build](https://travis-ci.org/TGNThump/passport-local.png)](https://travis-ci.org/TGNThump/passport-local)
+[![Dependencies](https://david-dm.org/TGNThump/passport-local.png)](https://david-dm.org/TGNThump/passport-local)
 
 
-[Passport](http://passportjs.org/) strategy for authenticating with a username
+[Passport](http://passportjs.org/) strategy for authenticating with a provided username
 and password.
 
 This module lets you authenticate using a username and password in your Node.js
@@ -47,39 +44,31 @@ passport.use(new LocalStrategy(
 
 This strategy takes an optional options hash before the function, e.g. `new LocalStrategy({/* options */, callback})`.
 
-The available options are:
+The available parameters are:
 
-* `usernameField` - Optional, defaults to 'username'
-* `passwordField` - Optional, defaults to 'password'
+* `username` - the username to attempt login with.
+* `password` - the password to attempt login with.
+* `session` - use sessions? (default: true)
 
-Both fields define the name of the properties in the POST body that are sent to the server.
-
-#### Parameters
-
-By default, `LocalStrategy` expects to find credentials in parameters
-named username and password. If your site prefers to name these fields
-differently, options are available to change the defaults.
-
-    passport.use(new LocalStrategy({
-        usernameField: 'email',
-        passwordField: 'passwd',
-        session: false
-      },
-      function(username, password, done) {
-        // ...
-      }
-    ));
-
-When session support is not necessary, it can be safely disabled by
-setting the `session` option to false.
+```javascript
+passport.use(new LocalStrategy({
+    username: 'TGNThump',
+    password: 'passwd',
+    session: false
+  },
+  function(username, password, done) {
+    // ...
+  }
+));
+```
 
 The verify callback can be supplied with the `request` object by setting
 the `passReqToCallback` option to true, and changing callback arguments
 accordingly.
 
     passport.use(new LocalStrategy({
-        usernameField: 'email',
-        passwordField: 'passwd',
+        username: 'TGNThump',
+        username: 'passwd',
         passReqToCallback: true,
         session: false
       },
@@ -123,11 +112,8 @@ $ npm test
 ## Credits
 
 - [Jared Hanson](http://github.com/jaredhanson)
+- [Ben Pilgrim](http://github.com/TGNThump)
 
 ## License
 
 [The MIT License](http://opensource.org/licenses/MIT)
-
-Copyright (c) 2011-2015 Jared Hanson <[http://jaredhanson.net/](http://jaredhanson.net/)>
-
-<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/vK9dyjRnnWsMzzJTQ57fRJpH/jaredhanson/passport-local'>  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/vK9dyjRnnWsMzzJTQ57fRJpH/jaredhanson/passport-local.svg' /></a>
