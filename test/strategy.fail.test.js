@@ -8,7 +8,7 @@ var chai = require('chai')
 describe('Strategy', function() {
     
   describe('failing authentication', function() {
-    var strategy = new Strategy(function(username, password, done) {
+    var strategy = new Strategy({username: 'johndoe', password: 'secret'}, function(username, password, done) {
       return done(null, false);
     });
     
@@ -22,8 +22,6 @@ describe('Strategy', function() {
         })
         .req(function(req) {
           req.body = {};
-          req.body.username = 'johndoe';
-          req.body.password = 'secret';
         })
         .authenticate();
     });
@@ -34,7 +32,7 @@ describe('Strategy', function() {
   });
   
   describe('failing authentication with info', function() {
-    var strategy = new Strategy(function(username, password, done) {
+    var strategy = new Strategy({username: 'johndoe', password: 'secret'}, function(username, password, done) {
       return done(null, false, { message: 'authentication failed' });
     });
     
@@ -48,8 +46,6 @@ describe('Strategy', function() {
         })
         .req(function(req) {
           req.body = {};
-          req.body.username = 'johndoe';
-          req.body.password = 'secret';
         })
         .authenticate();
     });
