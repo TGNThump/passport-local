@@ -1,7 +1,7 @@
-# passport-local
+# passport-provided
 
-[![Build](https://travis-ci.org/TGNThump/passport-local.png)](https://travis-ci.org/TGNThump/passport-local)
-[![Dependencies](https://david-dm.org/TGNThump/passport-local.png)](https://david-dm.org/TGNThump/passport-local)
+[![Build](https://travis-ci.org/TGNThump/passport-provided.png)](https://travis-ci.org/TGNThump/passport-provided)
+[![Dependencies](https://david-dm.org/TGNThump/passport-provided.png)](https://david-dm.org/TGNThump/passport-provided)
 
 
 [Passport](http://passportjs.org/) strategy for authenticating with a provided username
@@ -16,19 +16,19 @@ unobtrusively integrated into any application or framework that supports
 ## Install
 
 ```bash
-$ npm install passport-local
+$ npm install passport-provided
 ```
 
 ## Usage
 
 #### Configure Strategy
 
-The local authentication strategy authenticates users using a username and
+The provided local authentication strategy authenticates users using a username and
 password.  The strategy requires a `verify` callback, which accepts these
 credentials and calls `done` providing a user.
 
 ```js
-passport.use(new LocalStrategy(
+passport.use(new ProvidedStrategy(
   function(username, password, done) {
     User.findOne({ username: username }, function (err, user) {
       if (err) { return done(err); }
@@ -51,7 +51,7 @@ The available parameters are:
 * `session` - use sessions? (default: true)
 
 ```javascript
-passport.use(new LocalStrategy({
+passport.use(new ProvidedStrategy({
     username: 'TGNThump',
     password: 'passwd',
     session: false
@@ -66,7 +66,7 @@ The verify callback can be supplied with the `request` object by setting
 the `passReqToCallback` option to true, and changing callback arguments
 accordingly.
 
-    passport.use(new LocalStrategy({
+    passport.use(new ProvidedStrategy({
         username: 'TGNThump',
         username: 'passwd',
         passReqToCallback: true,
@@ -93,14 +93,6 @@ app.post('/login',
     res.redirect('/');
   });
 ```
-
-## Examples
-
-Developers using the popular [Express](http://expressjs.com/) web framework can
-refer to an [example](https://github.com/passport/express-4.x-local-example)
-as a starting point for their own web applications.
-
-Additional examples can be found on the [wiki](https://github.com/jaredhanson/passport-local/wiki/Examples).
 
 ## Tests
 
